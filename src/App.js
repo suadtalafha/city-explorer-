@@ -31,7 +31,7 @@ export class App extends React.Component {
     
   }
   getWeather =async()=>{
-    let weatherData=await axios.get(`${process.env.REACT_APP_SERVER}/}`);
+    let weatherData=await axios.get(`${process.env.REACT_APP_SERVER}}`);
     this.setState({
       weatherInfo=weatherData.data
     })
