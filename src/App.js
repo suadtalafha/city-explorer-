@@ -10,6 +10,8 @@ export class App extends React.Component {
       cityData:{},
       search:'',
       showMap:false,
+      weatherInfo:[],
+      showData:false,
 
     }
   }
@@ -28,6 +30,12 @@ export class App extends React.Component {
     })
     
   }
+  getWeather =async()=>{
+    let weatherData=await axios.get(`${process.env.REACT_APP_SERVER}}`);
+    this.setState({
+      weatherInfo=weatherData.data
+    })
+  }
   
   render() {
     return (
@@ -42,6 +50,7 @@ export class App extends React.Component {
      {this.state.showMap && 
         <img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=15`} />
         }   
+        <p>{this.state.weatherData}</p>
       </div>
     )
   }
