@@ -34,6 +34,7 @@ class App extends React.Component {
     })
     
   }
+
   // getWeather =async()=>{
   //   let weatherData=await axios.get(`${process.env.REACT_APP_SERVER}/}`);
   //   this.setState({
@@ -41,6 +42,10 @@ class App extends React.Component {
   //   })
   // }
   ShowModal=()=>{
+
+  getWeather =async()=>{
+    let weatherData=await axios.get(`${process.env.REACT_APP_SERVER}}`);
+
     this.setState({
       showModal:true,
     })
