@@ -2,9 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import ModalItem from './Component/ModalItem';
 import CardItem from './Component/CardItem';
+import './App.css'
 
 
-export class App extends React.Component {
+class App extends React.Component {
 
   constructor(props) {
     super(props)
@@ -13,8 +14,7 @@ export class App extends React.Component {
       search:'',
       showMap:false,
       showModal:false,
-      // weatherInfo:[],
-      // showData:false,
+     
 
     }
   }
@@ -29,7 +29,8 @@ export class App extends React.Component {
     let respData = await axios.get(url);
     this.setState({
       cityData:respData.data[0],
-      showMap:true
+      showMap:true,
+      
     })
     
   }
@@ -41,18 +42,18 @@ export class App extends React.Component {
   // }
   ShowModal=()=>{
     this.setState({
-      showMap:true
+      showModal:true,
     })
   }
   handelClose=()=>{
   this.setState({
-    showMap:false,
+    showModal:false,
   })
   }
   
   render() {
     return (
-      <div>
+      <div className="main">
  <div>
      <h1>City Explorer</h1>
      <form onSubmit={this.getLocation}>
@@ -67,8 +68,8 @@ export class App extends React.Component {
         <p>{this.state.weatherData}</p> */}
       </div>
 
-      <CardItem cityData={this.state.cityData} showMap={this.props.showMap} ShowModal={this.ShowModal} />
-      <ModalItem  handelClose={this.handelClose} showMap={this.props.showMap}    cityData={this.state.cityData}    />
+      <CardItem cityData={this.state.cityData} showMap={this.state.showMap} ShowModal={this.ShowModal} />
+      <ModalItem  handelClose={this.handelClose} showModal={this.state.showModal}    cityData={this.state.cityData}    />
       </div>
      
     
