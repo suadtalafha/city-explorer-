@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+.main{
+  text-align:center;
+  background-image: url('https://wallpaperaccess.com/full/187161.jpg');
+  height: 700px;
+}
+.main h1{
+  color: white;
+}

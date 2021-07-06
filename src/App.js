@@ -1,8 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import ModalItem from './Component/ModalItem';
+import CardItem from './Component/CardItem';
+import './App.css'
 
 
-export class App extends React.Component {
+class App extends React.Component {
 
   constructor(props) {
     super(props)
@@ -10,8 +13,8 @@ export class App extends React.Component {
       cityData:{},
       search:'',
       showMap:false,
-      weatherInfo:[],
-      showData:false,
+      showModal:false,
+     
 
     }
   }
@@ -26,34 +29,53 @@ export class App extends React.Component {
     let respData = await axios.get(url);
     this.setState({
       cityData:respData.data[0],
-      showMap:true
+      showMap:true,
+      
     })
     
   }
-  getWeather =async()=>{
-    let weatherData=await axios.get(`${process.env.REACT_APP_SERVER}}`);
+  // getWeather =async()=>{
+  //   let weatherData=await axios.get(`${process.env.REACT_APP_SERVER}/}`);
+  //   this.setState({
+  //     weatherInfo=weatherData.data
+  //   })
+  // }
+  ShowModal=()=>{
     this.setState({
-      weatherInfo=weatherData.data
+      showModal:true,
     })
+  }
+  handelClose=()=>{
+  this.setState({
+    showModal:false,
+  })
   }
   
   render() {
     return (
-      <div>
+      <div className="main">
+ <div>
      <h1>City Explorer</h1>
      <form onSubmit={this.getLocation}>
      <input type='text' placeholder='city name' name='city'/>
           <input type='submit' value='Explore'/>
 
      </form>
-     <p>City Name: {this.state.cityData.display_name},{this.state.cityData.lat},{this.state.cityData.lon}</p>
+     {/* <p>City Name: {this.state.cityData.display_name},{this.state.cityData.lat},{this.state.cityData.lon}</p>
      {this.state.showMap && 
         <img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=15`} />
         }   
-        <p>{this.state.weatherData}</p>
+        <p>{this.state.weatherData}</p> */}
       </div>
+
+      <CardItem cityData={this.state.cityData} showMap={this.state.showMap} ShowModal={this.ShowModal} />
+      <ModalItem  handelClose={this.handelClose} showModal={this.state.showModal}    cityData={this.state.cityData}    />
+      </div>
+     
+    
     )
   }
-}
 
+
+}
 export default App
