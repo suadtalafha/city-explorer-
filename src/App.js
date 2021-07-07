@@ -4,6 +4,8 @@ import ModalItem from './Component/ModalItem';
 import CardItem from './Component/CardItem';
 import './App.css'
 import WeatherCard from './Component/WeatherCard';
+import CardMoveis from './Component/CardMoveis';
+import NewWeather from './Component/NewWeather';
 
 
 class App extends React.Component {
@@ -16,8 +18,11 @@ class App extends React.Component {
       showMap: false,
       WeatherInfor: [],
       showModal: false,
-      showWeather: false
-
+      showWeather: false,
+      movieInfo: [],
+      showMovei: false,
+      newWeather:[],
+      showNewWeather:false,
     }
   }
   getLocation = async (e) => {
@@ -29,7 +34,7 @@ class App extends React.Component {
     let url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.search}&format=json`;
 
     let respData = await axios.get(url);
-    // console.log(respData)
+
     await this.setState({
       cityData: respData.data[0],
       showMap: true,
@@ -44,17 +49,41 @@ class App extends React.Component {
     // let url = `https://explorer-city-api.herokuapp.com/weatherinfo?search=Amman&format=json`
     let url = `http://localhost:3001/weatherinfo?cityName=${city}`
     let weatherData = await axios.get(url);
-    console.log(weatherData.data)
-     this.setState({
+    // console.log(weatherData.data)
+    this.setState({
       WeatherInfor: weatherData.data,
       showWeather: true,
-
+    })
+    this.renderMovei();
+    this.renderWeather();
+  }
+  
+  renderWeather = async () => {
+    const city = this.state.search.charAt(0).toUpperCase() + this.state.search.slice(1);
+    let url=`https://explorer-city-api.herokuapp.com/weather?cityName=${city}`
+    let newWeatherData = await axios.get(url);
+    this.setState({
+      newWeather:newWeatherData.data,
+      showNewWeather:true
 
     })
-    // console.log(this.state.weatherInfo)
   }
-  ShowModal =  () => {
-     this.setState({
+
+
+  renderMovei = async () => {
+    const city = this.state.search.charAt(0).toUpperCase() + this.state.search.slice(1);
+    let url=`https://explorer-city-api.herokuapp.com/movie?cityName=${city}`
+    let moveisData = await axios.get(url);
+    this.setState({
+      movieInfo:moveisData.data,
+      showMovei:true
+
+    })
+  }
+
+
+  ShowModal = () => {
+    this.setState({
       showModal: true,
     })
   }
@@ -80,10 +109,11 @@ class App extends React.Component {
         }   
         <p>{this.state.weatherData}</p> */}
         </div>
-
+       <CardMoveis   movieInfo={this.state.movieInfo} showMovei ={this.state.showMovei}                                        />
         <CardItem cityData={this.state.cityData} showMap={this.state.showMap} ShowModal={this.ShowModal} />
         <ModalItem handelClose={this.handelClose} showModal={this.state.showModal} cityData={this.state.cityData} />
         <WeatherCard cityData={this.state.cityData} showWeather={this.state.showWeather} WeatherInfor={this.state.WeatherInfor} getWeather={this.getWeather} />
+        <NewWeather newWeather={this.state.newWeather}  showNewWeather={this.state.showNewWeather} />
       </div>
 
 
