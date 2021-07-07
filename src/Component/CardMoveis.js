@@ -35,8 +35,8 @@ class CardMoveis extends React.Component {
                                     <Card.Text>
                                         Movie Release_date :  {movies.released_on}
                                     </Card.Text>
-                                    <Card.Img src={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`
-                                    } alt={movies.title} />
+                                    <Card.Img src={movies.image_url}
+                                      />
 
 
 

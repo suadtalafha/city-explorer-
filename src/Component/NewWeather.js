@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
                                 <div>
 
                                     <Card.Text>
-                                        {val.data}
+                                        {val.date}
                                         
                                     </Card.Text>
                                     <Card.Text>
