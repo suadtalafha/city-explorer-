@@ -41,7 +41,9 @@ class App extends React.Component {
 
     })
     //https://explorer-city-api.herokuapp.com/
-    this.getWeather()
+   
+    this.renderMovei();
+    this.renderWeather();
   }
   getWeather = async () => {
     const city = this.state.search.charAt(0).toUpperCase() + this.state.search.slice(1);
@@ -54,8 +56,7 @@ class App extends React.Component {
       WeatherInfor: weatherData.data,
       showWeather: true,
     })
-    this.renderMovei();
-    this.renderWeather();
+   
   }
   
   renderWeather = async () => {
@@ -109,11 +110,12 @@ class App extends React.Component {
         }   
         <p>{this.state.weatherData}</p> */}
         </div>
-       <CardMoveis   movieInfo={this.state.movieInfo} showMovei ={this.state.showMovei}                                        />
+      
         <CardItem cityData={this.state.cityData} showMap={this.state.showMap} ShowModal={this.ShowModal} />
         <ModalItem handelClose={this.handelClose} showModal={this.state.showModal} cityData={this.state.cityData} />
         <WeatherCard cityData={this.state.cityData} showWeather={this.state.showWeather} WeatherInfor={this.state.WeatherInfor} getWeather={this.getWeather} />
         <NewWeather newWeather={this.state.newWeather}  showNewWeather={this.state.showNewWeather} />
+        <CardMoveis   movieInfo={this.state.movieInfo} showMovei ={this.state.showMovei}                                        />
       </div>
 
 
