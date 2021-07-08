@@ -119,18 +119,21 @@ Your README.md must include:
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+# Project Name
+City explorer
+
 Time Estimates
 For each of the lab features, make an estimate of the time it will take you to complete the feature, and record your start and finish times for that feature:
 
-Name of feature: _______________ApI_________________
+Name of feature: ____Api server(backend)___________how to render movies and daily weather___bu adding api in the backend then call it in react then render it in component______________
 
-Estimate of time needed to complete: _2hours____
+Estimate of time needed to complete: _5hours____
 
 Start time: __3pm___
 
-Finish time: ___5pm__
+Finish time: ___8pm__
 
-Actual time needed to complete: _2 hours____
+Actual time needed to complete: _4 hours____
 Add this information to your README.
 
 
