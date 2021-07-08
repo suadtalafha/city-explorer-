@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
                     <Card style={{ width: '18rem' }}>
                         {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                         <Card.Body>
-                            <Card.Title>Weather fot today</Card.Title>
+                            <Card.Title>Weather for today</Card.Title>
 
                             {this.props.newWeather.map(val => 
                                 <div>

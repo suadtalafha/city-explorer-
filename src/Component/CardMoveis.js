@@ -7,7 +7,7 @@ class CardMoveis extends React.Component {
         return (
             <div>
                 {this.props.showMovei &&
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '30rem', display: 'inline-flex', flex: 1 }}>
                     
                     <Card.Body>
 
